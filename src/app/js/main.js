@@ -1,7 +1,10 @@
-require([],
+require([
+    'jquery'
+],
 
-function () {
+function ($) {
 
-	// initialize code should go here...
+    $('body').html('<p>Hello World.</p>')
+    // initialize code should go here...
 
 });
