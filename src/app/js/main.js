@@ -1,10 +1,10 @@
 require([
-    'jquery'
+    'app'
 ],
 
-function ($) {
+function (App) {
 
-    $('body').html('<p>Hello World.</p>')
     // initialize code should go here...
+    var app = new App();
 
 });
