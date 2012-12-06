@@ -1,0 +1,2 @@
+# ignore the cache directory created by Sass for quicker compilation.
+.sass-cache/
