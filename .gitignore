@@ -1,2 +1,7 @@
 # ignore the cache directory created by Sass for quicker compilation.
 .sass-cache/
+
+# directories that are created to contain artifacts produced as a result of build
+# process.
+dist/
+intermediate/

@@ -29,10 +29,10 @@
         Default target will build the project created artifacts that will be
         placed in the distribution directory.
     -->
-    <target name="build" depends="-clean, -prepare" />
+    <target name="build" depends="-clean, -prepare, -copy, -package, -tidy" />
 
     <!--
-        Removes any previous artifacts from build attempts.
+        Removes any previous artifacts from previous build attempts.
     -->
     <target name="-clean">
         <delete dir="${dist.dir}" />
@@ -40,10 +40,46 @@
     </target>
 
     <!--
-        Created any directories that will be needed during the build task.
+        Create any directories needed during the build task.
     -->
     <target name="-prepare">
         <mkdir dir="${dist.dir}" />
         <mkdir dir="${intermediate.dir}" />
+    </target>
+
+    <!--
+        Files are copied from the src directory into an intermediate directory.
+        This ensures that the src files are not manipulated in a way that would
+        cause them to change and potentially break the product.
+
+        Also by copying the files into a middle man directory any changes made
+        doesn't trigger a change that would be picked up by any version control
+        solutions that might be running.
+
+        The intermediate directory should be ignored by any version control solutions.
+    -->
+    <target name="-copy">
+        <copy todir="${intermediate.dir}">
+            <fileset dir="${app.dir}" />
+        </copy>
+    </target>
+
+    <!--
+        Takes the files that are done with being configured and optimised and places
+        them in the distribution directory ready to be used wherever the application
+        is being hosted.
+    -->
+    <target name="-package">
+        <copy todir="${dist.dir}">
+            <fileset dir="${intermediate.dir}" />
+        </copy>
+    </target>
+
+    <!--
+        There is no longer a requirement for the directory used to contain the src
+        files during their manipulation so it can be deleted.
+    -->
+    <target name="-tidy">
+        <delete dir="${intermediate.dir}" />
     </target>
 </project>
