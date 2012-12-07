@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<!DOCTYPE project>
+<project name="app-build" default="build" basedir="../">
+
+    <!--
+        Gives access to environment variables.
+    -->
+    <property environment="ENV" />
+
+    <!--
+        Loads the project specific configuration values.
+    -->
+    <property file="build/config/project.properties"/>
+
+    <!--
+        Load in Ant-Contrib to give us access to some very useful tasks!
+        Learn more about Ant-Contrib and the extra functionality it offers from
+        the link below.
+
+        - http://ant-contrib.sourceforge.net/
+    -->
+    <taskdef resource="net/sf/antcontrib/antlib.xml">
+        <classpath>
+            <pathelement location="${tool.antcontrib}"/>
+        </classpath>
+    </taskdef>
+
+    <!--
+        Default target will build the project created artifacts that will be
+        placed in the distribution directory.
+    -->
+    <target name="build" depends="-clean, -prepare" />
+
+    <!--
+        Removes any previous artifacts from build attempts.
+    -->
+    <target name="-clean">
+        <delete dir="${dist.dir}" />
+        <delete dir="${intermediate.dir}" />
+    </target>
+
+    <!--
+        Created any directories that will be needed during the build task.
+    -->
+    <target name="-prepare">
+        <mkdir dir="${dist.dir}" />
+        <mkdir dir="${intermediate.dir}" />
+    </target>
+</project>
