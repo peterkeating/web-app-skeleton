@@ -16,3 +16,4 @@ Below is a list of all the third party frameworks & libraries that are used in t
 ### Build
 
 * [Ant Contributions](http://ant-contrib.sourceforge.net/) *1.0 B3*
+* [YUICompressor](http://developer.yahoo.com/yui/compressor/) *2.4.7*
