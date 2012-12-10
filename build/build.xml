@@ -29,7 +29,7 @@
         Default target will build the project created artifacts that will be
         placed in the distribution directory.
     -->
-    <target name="build" depends="-clean, -prepare, -copy, -css, -package, -tidy" />
+    <target name="build" depends="-clean, -prepare, -copy, -css, -js, -package, -tidy" />
 
     <!--
         Removes any previous artifacts from previous build attempts.
@@ -119,6 +119,81 @@
 
         <delete includeemptydirs="true">
             <fileset dir="${intermediate.dir}/css" excludes="${css.sha}.css" />
+        </delete>
+    </target>
+
+    <!--
+        Runs targets that are associated to handling the JavaScript.
+    -->
+    <target name="-js" depends="-js.optimise, -js.concat, -js.cache" />
+
+    <!--
+        Uses the RequireJS optimizer in order to place all the files collectively
+        into a single file for performance gains from reducing the amount of page
+        requests. Rhino is used to run the r.js JavaScript file in a Java environment.
+    -->
+    <target name="-js.optimise">
+        <java classname="org.mozilla.javascript.tools.shell.Main" failonerror="true" fork="true">
+            <classpath>
+                <pathelement location="${tool.rhino}" />
+            </classpath>
+            <arg value="${tool.rjsoptimizer}"/>
+            <arg value="-o"/>
+            <arg value="${rjs.optimizer.settings}"/>
+            <!--
+                Required to prevent a stack overflow error by increasing the stack
+                size that is available the the JVM while run the RequireJS optimizer.
+            -->
+            <jvmarg value="-Xss128m" />
+        </java>
+    </target>
+
+    <!--
+        Even though all the scripts are in a single file now there is still a dependency
+        on the "define" and "require" methods provided by RequireJS. To further
+        reduce the amount of requests the RequireJS library is concatenated with
+        the optimised JavaScript file that was created during the -js.optimise
+        target. This will create a JavaScript file named "final.js" that contains
+        all the JavaScript that is used by the application.
+    -->
+    <target name="-js.concat">
+        <for param="js.file" parallel="false" list="vendor/require.js,main-optimised.js">
+            <sequential>
+                <concat destfile="${intermediate.dir}/js/final.js" append="yes">
+                    <filelist dir="${intermediate.dir}/js" files="@{js.file}"/>
+                </concat>
+            </sequential>
+        </for>
+    </target>
+
+    <!--
+        Similar to the -css.cache target but involving the JavaScript instead. The
+        URL to the JavaScript file for the application is changed to ensure the
+        user gets the latest JavaScript instead of an older cached version. The
+        <script> tag to load the JavaScript is changed so it no longer loads the
+        RequireJS library with a data-main attribute pointed to the config. Instead
+        the common approach of loading a single JavaScript file with a URL in the
+        src tag is used.
+    -->
+    <target name="-js.cache">
+        <checksum file="${intermediate.dir}/js/final.js" algorithm="sha" property="scripts.fullsha" />
+        <propertyregex property="scripts.sha" input="${scripts.fullsha}" regexp=".{${hash.length}}" select="\0" />
+        <property name="scripts.js" value="${intermediate.dir}/js/${scripts.sha}.js" />
+        <copy file="${intermediate.dir}/js/final.js" tofile="${scripts.js}" />
+
+        <var name="matchRegex" value="&lt;script data-main=&quot;js/config&quot; src=&quot;js/vendor/require.js&quot;&gt;&lt;/script&gt;" />
+        <var name="replaceRegex" value="&lt;script src=&quot;js/${scripts.sha}.js&quot;&gt;&lt;/script&gt;" />
+
+        <replaceregexp match="${matchRegex}" replace="${replaceRegex}" flags="m">
+            <fileset dir="${intermediate.dir}" includes="${page-files}"/>
+        </replaceregexp>
+
+        <!--
+            Deletes all the JS files that are no longer required, everything but
+            the cached JavaScript file and Modernizr.
+        -->
+        <delete includeemptydirs="true">
+            <fileset dir="${intermediate.dir}/js" excludes="${scripts.sha}.js, vendor/modernizr.js" />
         </delete>
     </target>
 
