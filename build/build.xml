@@ -32,6 +32,15 @@
     <target name="build" depends="-clean, -prepare, -copy, -css, -js, -package, -tidy" />
 
     <!--
+        In an attempt to save valuable bytes the images can be compressed to reduce
+        their filesize. Running 'ant images' will take the images in the images
+        directory and optimise, sticking the artifacts in an optimised images directory
+        where you can choose to use them or not. To use them simply copy and paste
+        the image from the optimised directory into the original images directory.
+    -->
+    <target name="images" depends="-images-prepare, -imagespng" />
+
+    <!--
         Removes any previous artifacts from previous build attempts.
     -->
     <target name="-clean">
@@ -214,5 +223,40 @@
     -->
     <target name="-tidy">
         <delete dir="${intermediate.dir}" />
+    </target>
+
+    <!--
+        Deletes any previous optimised image artifacts and creates a new directory
+        that will contain the optimised images.
+    -->
+    <target name="-images-prepare">
+        <delete dir="${optimisedimages.dir}" />
+        <mkdir dir="${optimisedimages.dir}" />
+    </target>
+
+    <!--
+
+    -->
+    <target name="-imagespng">
+        <if>
+            <equals arg1="${images.strip.metadata}" arg2="true"/>
+            <then>
+                <var name="strip-meta-tags" value="-strip all"/>
+            </then>
+            <else>
+                <var name="strip-meta-tags" value=""/>
+            </else>
+        </if>
+
+        <apply executable="${tool.optipng}" dest="${optimisedimages.dir}" osfamily="windows">
+            <fileset dir="${images.dir}" includes="**/*.png" />
+            <arg value="-quiet"/>
+            <arg value="-o7"/>
+            <arg value="${strip-meta-tags}"/>
+            <arg value="-out"/>
+            <targetfile/>
+            <srcfile/>
+            <mapper type="identity"/>
+        </apply>
     </target>
 </project>

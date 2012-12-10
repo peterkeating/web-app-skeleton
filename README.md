@@ -19,3 +19,4 @@ Below is a list of all the third party frameworks & libraries that are used in t
 * [YUICompressor](http://developer.yahoo.com/yui/compressor/) *2.4.7*
 * [Rhino](https://developer.mozilla.org/en-US/docs/Rhino) *1.7R4*
 * [r.js](http://requirejs.org/docs/optimization.html) *2.1.2*
+* [Optipng](http://optipng.sourceforge.net/) *0.7*

@@ -5,3 +5,6 @@
 # process.
 dist/
 intermediate/
+
+# directory containing compressed images from executing 'ant images'.
+optimised-images/
