@@ -134,7 +134,7 @@
     <!--
         Runs targets that are associated to handling the JavaScript.
     -->
-    <target name="-js" depends="-js.optimise, -js.concat, -js.cache" />
+    <target name="-js" depends="-js.optimise, -js.cache" />
 
     <!--
         Uses the RequireJS optimizer in order to place all the files collectively
@@ -155,24 +155,6 @@
             -->
             <jvmarg value="-Xss128m" />
         </java>
-    </target>
-
-    <!--
-        Even though all the scripts are in a single file now there is still a dependency
-        on the "define" and "require" methods provided by RequireJS. To further
-        reduce the amount of requests the RequireJS library is concatenated with
-        the optimised JavaScript file that was created during the -js.optimise
-        target. This will create a JavaScript file named "final.js" that contains
-        all the JavaScript that is used by the application.
-    -->
-    <target name="-js.concat">
-        <for param="js.file" parallel="false" list="vendor/require.js,main-optimised.js">
-            <sequential>
-                <concat destfile="${intermediate.dir}/js/final.js" append="yes">
-                    <filelist dir="${intermediate.dir}/js" files="@{js.file}"/>
-                </concat>
-            </sequential>
-        </for>
     </target>
 
     <!--
