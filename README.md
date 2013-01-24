@@ -27,12 +27,12 @@ All the build automation is handled using Ant. Below are the available Ant comma
 
 ### Distributable
 
-Creates an application from the source code with the artefacts being placed in a '/dist' directory.
+Creates an application from the source code with the artefacts being placed in a `/dist` directory.
 
 	ant build
 
 ### Image Optimisation
 
-Reduces the size of all the images in the 'src/images' directory placing the optimised images in a '/optimise-images' directory. Currently the images are only optimised through Optipng, in the future it would be good to handle other image formats such as JPEG.
+Reduces the size of all the images in the `src/images` directory placing the optimised images in a `/optimise-images` directory. Currently the images are only optimised through Optipng, in the future it would be good to handle other image formats such as JPEG.
 
 	ant images
