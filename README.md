@@ -20,3 +20,19 @@ Below is a list of all the third party frameworks & libraries that are used in t
 * [Rhino](https://developer.mozilla.org/en-US/docs/Rhino) *1.7R4*
 * [r.js](http://requirejs.org/docs/optimization.html) *2.1.2*
 * [Optipng](http://optipng.sourceforge.net/) *0.7*
+
+## Automation
+
+All the build automation is handled using Ant. Below are the available Ant commands.
+
+### Distributable
+
+Creates an application from the source code with the artefacts being placed in a '/dist' directory.
+
+	ant build
+
+### Image Optimisation
+
+Reduces the size of all the images in the 'src/images' directory placing the optimised images in a '/optimise-images' directory. Currently the images are only optimised through Optipng, in the future it would be good to handle other image formats such as JPEG.
+
+	ant images
