@@ -11,7 +11,7 @@ Below is a list of all the third party frameworks & libraries that are used in t
 * [normalize.css](https://github.com/necolas/normalize.css) *2.1.0*
 * [Modernizr](http://modernizr.com/) *2.6.2*
 * [RequireJS](http://requirejs.org/) *2.1.4*
-* [JQuery](http://jquery.com) *1.9.0*
+* [JQuery](http://jquery.com) *1.9.1*
 
 ### Build
 
