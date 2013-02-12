@@ -30,5 +30,5 @@
     /**
     * File that is outputted by r.js containing all the code for the application.
     */
-    out: "../../../intermediate/js/final.js"
+    out: "../../../intermediate/app/js/final.js"
 })
