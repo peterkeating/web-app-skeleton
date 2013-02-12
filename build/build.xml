@@ -172,7 +172,7 @@
         <property name="scripts.js" value="${intermediate.app.dir}/js/${scripts.sha}.js" />
         <copy file="${intermediate.app.dir}/js/final.js" tofile="${scripts.js}" />
 
-        <var name="matchRegex" value="&lt;script data-main=&quot;app/js/config&quot; src=&quot;app/js/vendor/require.js&quot;&gt;&lt;/script&gt;" />
+        <var name="matchRegex" value="&lt;script data-main=&quot;app/js/config&quot; src=&quot;vendor/require.js&quot;&gt;&lt;/script&gt;" />
         <var name="replaceRegex" value="&lt;script src=&quot;app/js/${scripts.sha}.js&quot;&gt;&lt;/script&gt;" />
 
         <replaceregexp match="${matchRegex}" replace="${replaceRegex}" flags="m">
@@ -184,7 +184,11 @@
             the cached JavaScript file and Modernizr.
         -->
         <delete includeemptydirs="true">
-            <fileset dir="${intermediate.app.dir}/js" excludes="${scripts.sha}.js, vendor/modernizr.js" />
+            <fileset dir="${intermediate.app.dir}/js" excludes="${scripts.sha}.js" />
+        </delete>
+
+        <delete includeemptydirs="true">
+            <fileset dir="${intermediate.dir}/vendor" excludes="modernizr.js" />
         </delete>
     </target>
 

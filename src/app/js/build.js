@@ -16,7 +16,7 @@
     * property.
     */
     paths: {
-        requireJS: './vendor/require'
+        requireJS: '../../vendor/require'
     },
 
     /**
