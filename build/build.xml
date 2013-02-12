@@ -87,13 +87,13 @@
     -->
     <target name="-css.min">
         <apply executable="java">
-            <fileset dir="${intermediate.dir}/app/css" includes="styles.css" />
+            <fileset dir="${intermediate.app.dir}/css" includes="styles.css" />
             <arg line="-jar"/>
             <arg path="${tool.yuicompressor}"/>
             <srcfile/>
             <arg line="--type css"/>
             <arg line="-o"/>
-            <mapper type="merge" to="${intermediate.dir}/app/css/styles.min.css"/>
+            <mapper type="merge" to="${intermediate.app.dir}/css/styles.min.css"/>
             <targetfile/>
         </apply>
     </target>
@@ -116,10 +116,10 @@
               deleted.
     -->
     <target name="-css.cache">
-        <checksum file="${intermediate.dir}/app/css/styles.min.css" algorithm="sha" property="css.fullsha" />
+        <checksum file="${intermediate.app.dir}/css/styles.min.css" algorithm="sha" property="css.fullsha" />
         <propertyregex property="css.sha" input="${css.fullsha}" regexp=".{${hash.length}}" select="\0" />
         <property name="style.css" value="css/${css.sha}.css" />
-        <copy file="${intermediate.dir}/app/css/styles.min.css" tofile="${intermediate.dir}/app/css/${css.sha}.css" />
+        <copy file="${intermediate.app.dir}/css/styles.min.css" tofile="${intermediate.app.dir}/css/${css.sha}.css" />
 
         <replaceregexp  match="&lt;link(.+)href=['&quot;]?(.*)/styles.css(?:\?.*)?['&quot;\s]?(.*/?&gt;)"
                         replace="&lt;link\1href='\2/${css.sha}.css'\3" flags="m">
@@ -127,7 +127,7 @@
         </replaceregexp>
 
         <delete includeemptydirs="true">
-            <fileset dir="${intermediate.dir}/app/css" excludes="${css.sha}.css" />
+            <fileset dir="${intermediate.app.dir}/css" excludes="${css.sha}.css" />
         </delete>
     </target>
 
@@ -167,10 +167,10 @@
         src tag is used.
     -->
     <target name="-js.cache">
-        <checksum file="${intermediate.dir}/app/js/final.js" algorithm="sha" property="scripts.fullsha" />
+        <checksum file="${intermediate.app.dir}/js/final.js" algorithm="sha" property="scripts.fullsha" />
         <propertyregex property="scripts.sha" input="${scripts.fullsha}" regexp=".{${hash.length}}" select="\0" />
-        <property name="scripts.js" value="${intermediate.dir}/app/js/${scripts.sha}.js" />
-        <copy file="${intermediate.dir}/app/js/final.js" tofile="${scripts.js}" />
+        <property name="scripts.js" value="${intermediate.app.dir}/js/${scripts.sha}.js" />
+        <copy file="${intermediate.app.dir}/js/final.js" tofile="${scripts.js}" />
 
         <var name="matchRegex" value="&lt;script data-main=&quot;app/js/config&quot; src=&quot;app/js/vendor/require.js&quot;&gt;&lt;/script&gt;" />
         <var name="replaceRegex" value="&lt;script src=&quot;app/js/${scripts.sha}.js&quot;&gt;&lt;/script&gt;" />
@@ -184,7 +184,7 @@
             the cached JavaScript file and Modernizr.
         -->
         <delete includeemptydirs="true">
-            <fileset dir="${intermediate.dir}/app/js" excludes="${scripts.sha}.js, vendor/modernizr.js" />
+            <fileset dir="${intermediate.app.dir}/js" excludes="${scripts.sha}.js, vendor/modernizr.js" />
         </delete>
     </target>
 
