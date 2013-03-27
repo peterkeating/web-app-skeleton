@@ -49,6 +49,27 @@ module.exports = function(grunt) {
                     { src: ['src/app/css/styles.css'], dest: 'dist/css/styles.css' }
                 ]
             }
+        },
+
+        /**
+         * Updates the URLs to assets in the HTML file.
+         */
+        'string-replace': {
+            dist: {
+                files: {
+                    'dist/index.html': 'dist/index.html'
+                },
+                options: {
+                    replacements: [{
+                        pattern: '<script data-main="app/js/config" src="vendor/require.js"></script>',
+                        replacement: '<script src="js/app.js"></script>'
+                    },
+                    {
+                        pattern: 'vendor/modernizr.js',
+                        replacement: 'js/vendor/modernizr.js'
+                    }]
+                }
+            }
         }
     });
 
@@ -58,10 +79,11 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-requirejs');
     grunt.loadNpmTasks('grunt-contrib-sass');
     grunt.loadNpmTasks('grunt-contrib-copy');
+    grunt.loadNpmTasks('grunt-string-replace');
 
     /**
      * Register the default task that will be responsible for building the web
      * application.
      */
-    grunt.registerTask('default', ['requirejs', 'sass', 'copy']);
+    grunt.registerTask('default', ['requirejs', 'sass', 'copy', 'string-replace']);
 };
