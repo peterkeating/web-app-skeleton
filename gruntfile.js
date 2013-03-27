@@ -68,6 +68,10 @@ module.exports = function(grunt) {
                     {
                         pattern: 'vendor/modernizr.js',
                         replacement: 'js/vendor/modernizr.js'
+                    },
+                    {
+                        pattern: 'app/css/styles.css',
+                        replacement: 'css/styles.css'
                     }]
                 }
             }
