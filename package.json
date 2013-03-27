@@ -7,5 +7,8 @@
     "url": "git://github.com/peterkeating/web-app-skeleton.git"
   },
   "author": "Peter Keating",
-  "readmeFilename": "README.md"
+  "readmeFilename": "README.md",
+  "devDependencies": {
+    "grunt": "~0.4.1"
+  }
 }
