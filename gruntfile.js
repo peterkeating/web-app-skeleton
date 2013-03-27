@@ -45,8 +45,9 @@ module.exports = function(grunt) {
         copy: {
             main: {
                 files: [
-                    { expand: true, flatten: true, src: ['src/index.html'], dest: 'dist/' },
-                    { src: ['src/app/css/styles.css'], dest: 'dist/css/styles.css' }
+                    { src: ['src/index.html'], dest: 'dist/index.html' },
+                    { src: ['src/app/css/styles.css'], dest: 'dist/css/styles.css' },
+                    { src: ['src/vendor/modernizr.js'], dest: 'dist/js/vendor/modernizr.js' }
                 ]
             }
         },
