@@ -23,6 +23,20 @@ module.exports = function(grunt) {
                     out: 'dist/js/app.js'
                 }
             }
+        },
+
+        /**
+         * Compiles Sass stylesheet into a minified CSS file.
+         */
+        sass: {
+            dist: {
+                options: {
+                    style: 'compressed'
+                },
+                files: {
+                    'src/app/css/styles.css': 'src/app/css/scss/styles.scss'
+                }
+            }
         }
     });
 
@@ -30,10 +44,11 @@ module.exports = function(grunt) {
      * Loads libraries to assist with the build process.
      */
     grunt.loadNpmTasks('grunt-contrib-requirejs');
+    grunt.loadNpmTasks('grunt-contrib-sass');
 
     /**
      * Register the default task that will be responsible for building the web
      * application.
      */
-    grunt.registerTask('default', ['requirejs']);
+    grunt.registerTask('default', ['requirejs', 'sass']);
 };
