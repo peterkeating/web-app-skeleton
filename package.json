@@ -1,0 +1,11 @@
+{
+  "name": "web-app-skeleton",
+  "version": "0.1.0",
+  "description": "Walking skeleton capable of building, testing and deploying a web application.",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/peterkeating/web-app-skeleton.git"
+  },
+  "author": "Peter Keating",
+  "readmeFilename": "README.md"
+}
