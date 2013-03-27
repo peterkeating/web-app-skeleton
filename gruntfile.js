@@ -37,6 +37,18 @@ module.exports = function(grunt) {
                     'src/app/css/styles.css': 'src/app/css/scss/styles.scss'
                 }
             }
+        },
+
+        /**
+         * Copies files that make up a production ready version of the web app.
+         */
+        copy: {
+            main: {
+                files: [
+                    { expand: true, flatten: true, src: ['src/index.html'], dest: 'dist/' },
+                    { src: ['src/app/css/styles.css'], dest: 'dist/css/styles.css' }
+                ]
+            }
         }
     });
 
@@ -45,10 +57,11 @@ module.exports = function(grunt) {
      */
     grunt.loadNpmTasks('grunt-contrib-requirejs');
     grunt.loadNpmTasks('grunt-contrib-sass');
+    grunt.loadNpmTasks('grunt-contrib-copy');
 
     /**
      * Register the default task that will be responsible for building the web
      * application.
      */
-    grunt.registerTask('default', ['requirejs', 'sass']);
+    grunt.registerTask('default', ['requirejs', 'sass', 'copy']);
 };
