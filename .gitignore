@@ -8,3 +8,7 @@ intermediate/
 
 # directory containing compressed images from executing 'ant images'.
 optimised-images/
+
+# directories created by node & npm.
+npm-debug.log
+node_modules
