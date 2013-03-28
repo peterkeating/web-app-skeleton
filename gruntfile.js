@@ -116,6 +116,13 @@ module.exports = function(grunt) {
                 tasks: ['sass']
             },
 
+            /**
+             * Any changes to JavaScript files triggers the test suite to be tested.
+             */
+            js: {
+                files: 'src/**/*.js',
+                tasks: ['mocha']
+            }
         }
     });
 
