@@ -12,3 +12,8 @@ optimised-images/
 # directories created by node & npm.
 npm-debug.log
 node_modules
+
+# css files are created by converting Sass files into CSS. The easiest way to do
+# this is to run the 'grunt watch' task, which will watch for any changes to .scss
+# files and convert the Sass code into the CSS stylesheet.
+*.css
