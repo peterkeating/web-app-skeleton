@@ -1,3 +1,11 @@
+/**
+ * Unfamiliar with Grunt? Here are some links that will allow you to learn more.
+ *
+ * - http://gruntjs.com
+ * - http://gruntjs.com/getting-started
+ * - http://howtonode.org/introduction-to-npm
+ */
+
 'use strict';
 
 module.exports = function(grunt) {
