@@ -25,6 +25,10 @@ module.exports = function(grunt) {
          */
         clean: ["dist/"],
 
+        mocha: {
+            all: [ 'src/tests/*.html' ]
+        },
+
         /**
          * Optimizes the JavaScript into a single file using the r.js optimizer.
          */
@@ -124,6 +128,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-string-replace');
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-mocha');
 
     /**
      * Register the default task that will run the watch task. This task is useful
@@ -134,5 +139,5 @@ module.exports = function(grunt) {
     /**
      * This task will build a production ready version of the web app.
      */
-    grunt.registerTask('dist', ['clean', 'requirejs', 'sass', 'copy', 'string-replace']);
+    grunt.registerTask('dist', ['clean', 'mocha', 'requirejs', 'sass', 'copy', 'string-replace']);
 };
