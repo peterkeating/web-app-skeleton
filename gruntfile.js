@@ -11,6 +11,11 @@
 module.exports = function(grunt) {
 
     /**
+     * Generates a random 7 character long string that can be used for cache busting.
+     */
+    var hash = Math.random().toString(36).substring(2, 9);
+
+    /**
      * Configuring the tasks available for the build process.
      */
     grunt.initConfig({
@@ -33,7 +38,7 @@ module.exports = function(grunt) {
                     },
                     include: 'requireJS',
                     preserveLicenseComments: false,
-                    out: 'dist/js/app.js'
+                    out: 'dist/js/' + hash + '.js'
                 }
             }
         },
@@ -59,7 +64,7 @@ module.exports = function(grunt) {
             main: {
                 files: [
                     { src: ['src/index.html'], dest: 'dist/index.html' },
-                    { src: ['src/app/css/styles.css'], dest: 'dist/css/styles.css' },
+                    { src: ['src/app/css/styles.css'], dest: 'dist/css/' + hash + '.css' },
                     { src: ['src/vendor/modernizr.js'], dest: 'dist/js/vendor/modernizr.js' }
                 ]
             }
@@ -76,7 +81,7 @@ module.exports = function(grunt) {
                 options: {
                     replacements: [{
                         pattern: '<script data-main="app/js/config" src="vendor/require.js"></script>',
-                        replacement: '<script src="js/app.js"></script>'
+                        replacement: '<script src="js/' + hash + '.js"></script>'
                     },
                     {
                         pattern: 'vendor/modernizr.js',
@@ -84,7 +89,7 @@ module.exports = function(grunt) {
                     },
                     {
                         pattern: 'app/css/styles.css',
-                        replacement: 'css/styles.css'
+                        replacement: 'css/' + hash + '.css'
                     }]
                 }
             }
