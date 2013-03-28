@@ -26,7 +26,7 @@ define(
         * user to indicate that things are working.
         */
         p.initialise = function () {
-            $('body').html('<p>Walking...</p>');
+            $('.js-app').html('<p>Walking...</p>');
         };
 
         return App;
