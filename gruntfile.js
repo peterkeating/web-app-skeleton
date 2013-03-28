@@ -8,6 +8,11 @@ module.exports = function(grunt) {
     grunt.initConfig({
 
         /**
+         * Deletes the any previous artefacts.
+         */
+        clean: ["dist/"],
+
+        /**
          * Optimizes the JavaScript into a single file using the r.js optimizer.
          */
         requirejs: {
@@ -85,10 +90,11 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-sass');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-string-replace');
+    grunt.loadNpmTasks('grunt-contrib-clean');
 
     /**
      * Register the default task that will be responsible for building the web
      * application.
      */
-    grunt.registerTask('default', ['requirejs', 'sass', 'copy', 'string-replace']);
+    grunt.registerTask('default', ['clean', 'requirejs', 'sass', 'copy', 'string-replace']);
 };
