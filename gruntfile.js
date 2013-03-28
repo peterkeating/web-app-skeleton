@@ -126,8 +126,13 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
 
     /**
-     * Register the default task that will be responsible for building the web
-     * application.
+     * Register the default task that will run the watch task. This task is useful
+     * to have running during development.
      */
-    grunt.registerTask('default', ['clean', 'requirejs', 'sass', 'copy', 'string-replace']);
+    grunt.registerTask('default', ['watch']);
+
+    /**
+     * This task will build a production ready version of the web app.
+     */
+    grunt.registerTask('dist', ['clean', 'requirejs', 'sass', 'copy', 'string-replace']);
 };
