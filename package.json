@@ -13,6 +13,7 @@
     "grunt-contrib-copy": "~0.4.1",
     "grunt-contrib-requirejs": "~0.4.0",
     "grunt-contrib-sass": "~0.3.0",
-    "grunt-string-replace": "~0.2.3"
+    "grunt-string-replace": "~0.2.3",
+    "grunt-contrib-clean": "~0.4.0"
   }
 }
