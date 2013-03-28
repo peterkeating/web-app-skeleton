@@ -80,6 +80,25 @@ module.exports = function(grunt) {
                     }]
                 }
             }
+        },
+
+        /**
+         * Starts watching files for additions, changes or deletions, which will
+         * trigger a task to be run. Current tasks are display below.
+         *
+         * - Changes to .scss files will trigger a Sass to CSS conversion.
+         */
+        watch: {
+
+            /**
+             * Any changes made to a .scss file in the project trigger a conversion
+             * of Sass to CSS.
+             */
+            sass: {
+                files: '**/*.scss',
+                tasks: ['sass']
+            },
+
         }
     });
 
@@ -91,6 +110,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-string-replace');
     grunt.loadNpmTasks('grunt-contrib-clean');
+    grunt.loadNpmTasks('grunt-contrib-watch');
 
     /**
      * Register the default task that will be responsible for building the web
