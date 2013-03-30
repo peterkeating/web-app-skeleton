@@ -123,6 +123,33 @@ module.exports = function(grunt) {
                 files: 'src/**/*.js',
                 tasks: ['mocha']
             }
+        },
+
+        /**
+         * Starts a local web server.
+         */
+        connect: {
+            /**
+             * Local web server that points to the directory that contains production
+             * ready artefacts created by running the 'dist' task.
+             */
+            live: {
+                options: {
+                    port: 9001,
+                    base: 'dist'
+                }
+            },
+
+            /**
+             * Local web server that points to the src directory that contains
+             * the development code.
+             */
+            dev: {
+                options: {
+                    port: 9001,
+                    base: 'src'
+                }
+            }
         }
     });
 
@@ -136,6 +163,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-mocha');
+    grunt.loadNpmTasks('grunt-contrib-connect');
 
     /**
      * Register the default task that will run the watch task. This task is useful
@@ -147,4 +175,16 @@ module.exports = function(grunt) {
      * This task will build a production ready version of the web app.
      */
     grunt.registerTask('dist', ['clean', 'mocha', 'requirejs', 'sass', 'copy', 'string-replace']);
+
+    /**
+     * Starts web server whose base url is the directory that stores the production
+     * ready artefact.
+     */
+    grunt.registerTask('production', ['dist', 'connect:live:keepalive']);
+
+    /**
+     * Starts web server whose base url is the directory that contains the development
+     * code.
+     */
+    grunt.registerTask('dev', ['connect:dev:keepalive']);
 };
