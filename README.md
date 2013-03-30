@@ -28,3 +28,15 @@ Creates an application from the source code with the artefacts being placed in a
 Watches for file changes that will trigger tasks that help speed up development. It is recommended that this task is running during development.
 
     grunt
+
+### Static Web Server
+
+Starts a static web server (via [connect](https://github.com/gruntjs/grunt-contrib-connect)) that will host the development or production web application.
+
+*Command below runs the development version.*
+
+    grunt dev
+
+*Command below runs the production version.*
+
+    grunt production
