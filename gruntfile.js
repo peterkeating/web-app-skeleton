@@ -133,7 +133,7 @@ module.exports = function(grunt) {
              * Local web server that points to the directory that contains production
              * ready artefacts created by running the 'dist' task.
              */
-            live: {
+            production: {
                 options: {
                     port: 9001,
                     base: 'dist'
@@ -180,7 +180,7 @@ module.exports = function(grunt) {
      * Starts web server whose base url is the directory that stores the production
      * ready artefact.
      */
-    grunt.registerTask('production', ['dist', 'connect:live:keepalive']);
+    grunt.registerTask('production', ['dist', 'connect:production:keepalive']);
 
     /**
      * Starts web server whose base url is the directory that contains the development
