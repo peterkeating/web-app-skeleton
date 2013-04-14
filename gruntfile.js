@@ -100,7 +100,9 @@ module.exports = function(grunt) {
         },
 
         /**
-         *
+         * Analyses JavaScript files using JSHint for errors or potential problems.
+         * You can customise the parameters by modifying the .jshintrc file.
+         * - http://jshint.com/
          */
         jshint: {
             all: [
