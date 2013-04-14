@@ -1,3 +1,5 @@
+/*global mocha, window*/
+
 require([
     'jquery',
     'chai',

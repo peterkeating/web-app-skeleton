@@ -1,3 +1,4 @@
+/*global define*/
 define(
    /**
     * Name of the module.

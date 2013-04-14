@@ -100,6 +100,22 @@ module.exports = function(grunt) {
         },
 
         /**
+         * Analyses JavaScript files using JSHint for errors or potential problems.
+         * You can customise the parameters by modifying the .jshintrc file.
+         * - http://jshint.com/
+         */
+        jshint: {
+            all: [
+                'gruntfile.js',
+                'src/app/js/**/*.js',
+                'src/tests/**/*.js',
+            ],
+            options: {
+                jshintrc: '.jshintrc'
+            }
+        },
+
+        /**
          * Starts watching files for additions, changes or deletions, which will
          * trigger a task to be run. Current tasks are display below.
          *
@@ -164,6 +180,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-mocha');
     grunt.loadNpmTasks('grunt-contrib-connect');
+    grunt.loadNpmTasks('grunt-contrib-jshint');
 
     /**
      * Register the default task that will run the watch task. This task is useful
@@ -174,7 +191,7 @@ module.exports = function(grunt) {
     /**
      * This task will build a production ready version of the web app.
      */
-    grunt.registerTask('dist', ['clean', 'mocha', 'requirejs', 'sass', 'copy', 'string-replace']);
+    grunt.registerTask('dist', ['clean', 'jshint', 'mocha', 'requirejs', 'sass', 'copy', 'string-replace']);
 
     /**
      * Starts web server whose base url is the directory that stores the production
