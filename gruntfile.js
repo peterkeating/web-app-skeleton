@@ -191,7 +191,7 @@ module.exports = function(grunt) {
     /**
      * This task will build a production ready version of the web app.
      */
-    grunt.registerTask('dist', ['clean', 'mocha', 'requirejs', 'sass', 'copy', 'string-replace']);
+    grunt.registerTask('dist', ['clean', 'jshint', 'mocha', 'requirejs', 'sass', 'copy', 'string-replace']);
 
     /**
      * Starts web server whose base url is the directory that stores the production
