@@ -1,3 +1,5 @@
+/*global define, suite, assert, setup, teardown, test, $*/
+
 /**
  * Simple example of how to set up a unit test for a module in the application.
  */

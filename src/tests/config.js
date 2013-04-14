@@ -1,4 +1,5 @@
-/*global require*/
+/*global mocha*/
+
 'use strict';
 
 require.config({
