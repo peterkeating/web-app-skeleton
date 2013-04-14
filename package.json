@@ -3,7 +3,14 @@
   "version": "0.0.0",
   "description": "Simple description of the application.",
   "author": "You",
+  "main": "gruntfile.js",
+  "engines": {
+    "node": "*"
+  },
   "readmeFilename": "README.md",
+  "scripts": {
+    "test": "grunt dist"
+  },
   "devDependencies": {
     "grunt": "~0.4.1",
     "grunt-contrib-copy": "~0.4.1",
