@@ -8,12 +8,12 @@ Walking skeleton capable of building, testing and deploying a web application.
 
 Below is a list of all the third party frameworks & libraries that are used in the skeleton.
 
-* [normalize.css](https://github.com/necolas/normalize.css) *2.1.0*
+* [normalize.css](https://github.com/necolas/normalize.css) *2.1.2*
 * [Modernizr](http://modernizr.com/) *2.6.2*
-* [RequireJS](http://requirejs.org/) *2.1.5*
-* [JQuery](http://jquery.com) *1.9.1*
-* [Mocha](http://visionmedia.github.com/mocha/) *1.8.2*
-* [Chai](http://chaijs.com/) *1.5.0*
+* [RequireJS](http://requirejs.org/) *2.1.8*
+* [JQuery](http://jquery.com) *1.10.2*
+* [Mocha](http://visionmedia.github.com/mocha/) *1.12.0*
+* [Chai](http://chaijs.com/) *1.7.2*
 
 ## Automation
 
