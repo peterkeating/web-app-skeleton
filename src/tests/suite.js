@@ -7,7 +7,7 @@ require([
     /**
      * All the tests that need to be run should be defined here.
      */
-    '../../tests/app/test.app',
+    '../../tests/app/test.app'
 ],
 
 function ($, chai) {
