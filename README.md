@@ -12,7 +12,7 @@ Below is a list of all the third party frameworks & libraries that are used in t
 * [Modernizr](http://modernizr.com/) *2.6.2*
 * [RequireJS](http://requirejs.org/) *2.1.8*
 * [JQuery](http://jquery.com) *1.10.2*
-* [Mocha](http://visionmedia.github.com/mocha/) *1.12.0*
+* [Mocha](http://mochajs.org/) *1.12.0*
 * [Chai](http://chaijs.com/) *1.7.2*
 
 ## Automation
